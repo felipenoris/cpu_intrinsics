@@ -2,31 +2,18 @@
 function randuint() :: UInt32
     Base.llvmcall((
 """
+; Function Attrs: noinline nounwind optnone uwtable
 define i32 @randuint() #0 {
   %1 = alloca i32*, align 8
   %2 = alloca i32, align 4
-  %3 = alloca i32, align 4
-  store i32* %3, i32** %1, align 8
-  %4 = load i32*, i32** %1, align 8
-  %5 = call { i32, i32 } @llvm.x86.rdrand.32() #3
-  %6 = extractvalue { i32, i32 } %5, 0
-  store i32 %6, i32* %4
-  %7 = extractvalue { i32, i32 } %5, 1
-  %8 = icmp ne i32 %7, 0
-  br i1 %8, label %9, label %11
-
-; <label>:9:                                      ; preds = %0
-  %10 = load i32, i32* %3, align 4
-  store i32 %10, i32* %2, align 4
-  br label %12
-
-; <label>:11:                                     ; preds = %0
-  store i32 0, i32* %2, align 4
-  br label %12
-
-; <label>:12:                                     ; preds = %11, %9
-  %13 = load i32, i32* %2, align 4
-  ret i32 %13
+  store i32* %2, i32** %1, align 8
+  %3 = load i32*, i32** %1, align 8
+  %4 = call { i32, i32 } @llvm.x86.rdrand.32() #3
+  %5 = extractvalue { i32, i32 } %4, 0
+  store i32 %5, i32* %3
+  %6 = extractvalue { i32, i32 } %4, 1
+  %7 = load i32, i32* %2, align 4
+  ret i32 %7
 }
 
 ; Function Attrs: nounwind readnone speculatable

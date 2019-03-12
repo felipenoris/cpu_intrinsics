@@ -5,9 +5,8 @@
 unsigned int randuint()
 {
     unsigned int result;
-    if (_rdrand32_step(&result))
-        return result;
-    return 0;
+    _rdrand32_step(&result);
+    return result;
 }
 
 int main(int argc, char *argv[])

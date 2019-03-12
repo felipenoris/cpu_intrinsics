@@ -1,5 +1,5 @@
 CC = clang
-CFLAGS = -g -Wall -std=c11
+CFLAGS = -g -Wall -std=c11 -Ofast
 FEATURE_FLAGS = -mrdrnd
 
 TARGET = cpuintrinsics
@@ -14,3 +14,4 @@ llvm:
 
 clean:
 	rm -f $(TARGET) $(TARGET).ll
+	rm -rf $(TARGET).dSYM

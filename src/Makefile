@@ -1,5 +1,5 @@
 CC = clang
-CFLAGS = -g -Wall
+CFLAGS = -g -Wall -std=c11
 FEATURE_FLAGS = -mrdrnd
 
 TARGET = cpuintrinsics
@@ -10,7 +10,7 @@ $(TARGET): $(TARGET).c
 	$(CC) $(CFLAGS) $(FEATURE_FLAGS) -o $(TARGET) $(TARGET).c
 
 llvm:
-	$(CC) -S -emit-llvm $(FEATURE_FLAGS) $(TARGET).c
+	$(CC) $(CFLAGS) -S -emit-llvm $(FEATURE_FLAGS) $(TARGET).c
 
 clean:
 	rm -f $(TARGET) $(TARGET).ll
